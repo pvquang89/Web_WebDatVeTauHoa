@@ -1,0 +1,207 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="WebVeTau.Home" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="css/home.css" rel="stylesheet" />
+
+</head>
+<body runat="server">
+    <div class="header">
+        <div class="logo-header">
+            <a href="" class="logo"><img src="../img/logo.png" alt="" class=""></a>
+            <div class="login-resign">
+                <p>
+                
+                    <%if (username == null)  %>
+                    <% { %>
+                    <a href="Login.aspx"> <span id="dapnhap" runat="server"> Đăng Nhập </span></a>   /
+                    <a href="Register.aspx">Đăng ký</a>
+                    <% } else { %>
+                    <span> xin chào  <% =username %> </span>
+                    <span"><a href="Login.aspx" >Logout</a></span>
+                    <% } %>
+
+                </p>
+            </div>
+            
+
+        </div>
+        <div class="tag-bar">
+            <ul>
+                <li>
+                    <a href="Home.aspx" class="menu">Trang chủ</a>
+                </li>
+                <li>
+                    <a href="tickets.aspx" class="menu">Tìm vé</a>
+                </li>
+                <li>
+                    <a href="detailTicket.aspx" class="menu">thông tin đặt chỗ</a>
+                </li>
+                <li>
+                    <a href="detailTicket.aspx" class="menu">Trả vé</a>
+                </li>
+                <li>
+                    <a href="tickets.aspx" class="menu">Thông tin các chuyến</a>
+                </li>
+                <li>
+                    <a href="" class="menu">Hướng dẫn</a>
+                </li>
+                <li>
+                    <a href="" class="menu">Liên hệ</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="body-main">
+        <div class="main-header">
+            <div class="search-ve">
+                <h2>Thông tin hành trình</h2>
+                <div class="start">
+                    <p>Điểm đi:</p>
+                    <select name="start-point" id="select1">
+                        <option value="hanoi">Hà Nội</option>
+                        <option value="laocai">Lào Cai</option>
+                        <option value="saigon">Sài Gòn</option>
+                        <option value="hue">Huế</option>
+                        <option value="danang">Đà Nẵng</option>
+                        <option value="vinh">Vinh</option>
+                        <option value="thanhhoa">Thanh Hóa</option>
+                    </select>
+                </div>
+                <div class="end">
+                    <p>Điểm dến:</p>
+
+                    <select name="end-point" id="select2">
+                        <option value="hanoi">Hà Nội</option>
+                        <option value="laocai">Lào Cai</option>
+                        <option value="saigon">Sài Gòn</option>
+                        <option value="hue">Huế</option>
+                        <option value="danang">Đà Nẵng</option>
+                        <option value="vinh">Vinh</option>
+                        <option value="thanhhoa">Thanh Hóa</option>
+                    </select>
+                </div>
+                <div class="chose-type">
+                    <input type="radio" name="check" value="0" checked>
+                    <span>một chiều</span>
+                    <input type="radio" name="check" value="1">
+                    <span>khứ hồi</span>
+                </div>
+                <div class="datetime-chose">
+                    <p>Ngày đi:</p>
+                    <input type="date" id="datestart">
+                </div>
+                <div class="submit-form">
+                    <button type="submit" onclick="validateDate()">Tìm chuyến tàu</button>
+                </div>
+            </div>
+            <div class="image-tau">
+                <img src="../img/tauhoa1.jfif" alt="">
+            </div>
+
+        </div>
+        <div class="main-body">
+            <div class="body-title">
+                Quy định đổi, trả vé
+            </div>
+            <div class="body-text">
+                <p>
+                    1. Thời gian, mức phí đổi trả vé:
+                </p>
+                <p style="padding-left:20px">
+                    - Đổi vé: Vé cá nhân đổi trước giờ tàu chạy 24 giờ trở lên, lệ phí là 20.000 đồng/vé; không áp dụng
+                    đổi
+                    vé đối với vé tập thể.
+                </p>
+                <p style="padding-left:20px">
+                    - Trả vé:
+                </p>
+                <p style="padding-left:40px">
+                    + Vé cá nhân: Trả vé trước giờ tàu chạy từ 4 giờ đến dưới 24 giờ, lệ phí là 20% giá vé; từ 24 giờ
+                    trở
+                    lên lệ phí là 10% giá vé.
+                </p>
+                <p style="padding-left:40px">
+                    + Vé tập thể: Trả vé trước giờ tàu chạy từ 24 giờ đến dưới 72 giờ, lệ phí là 20% giá vé; từ 72 giờ
+                    trở
+                    lên lệ phí là 10% giá vé.
+                </p>
+                <p>
+                    2. Hình thức trả vé.
+                </p>
+                <p style="padding-left:20px">
+                    - Khi hành khách mua vé và thanh toán online qua website bán vé của Ngành Đường sắt, app bán vé hoặc
+                    các
+                    ứng dụng mua vé tàu hỏa của các đối tác thứ ba thì có thể trả vé online qua các website bán vé của
+                    Ngành
+                    Đường sắt hoặc đến trực tiếp nhà ga.
+                </p>
+                <p style="padding-left:20px">
+                    - Khi hành khách mua vé bằng các hình thức khác, muốn đổi vé, trả vé hành khách đến trực tiếp nhà ga
+                    kèm
+                    theo giấy tờ tùy thân bản chính của người đi tàu (hoặc người mua vé) cho nhân viên đường sắt. Đồng
+                    thời,
+                    thông tin trên thẻ đi tàu phải trùng khớp với giấy tờ tùy thân của hành khách.
+                </p>
+                <p>
+                    <i> Trân trọng cảm ơn!. </i>
+                </p>
+            </div>
+        </div>
+        <div class="main-footer">
+            <div class="h2">MUA VÉ TÀU TẠI CÔNG TY TNHH DỊCH VỤ DU LỊCH LÝ HẢI</div>
+            <p>
+                Công ty TNHH DV DL Lý Hải là nơi cung cấp các loại phương tiện di chuyển hàng đầu trong đó có đường sắt
+                Việt
+                Nam. Tàu lửa hiện nay vẫn là phương tiện giá rẻ nhất và an toàn nhất được sự tin dùng của nhiều hành
+                khách .
+                Với sự cải tiến ngày càng tiện dụng , đường sắt Việt nam luôn tồn tại và vững mạnh trong suốt nhiều năm
+                qua.
+            </p>
+            <p>
+                Vé tàu hiện nay không chỉ cung cấp tại các ga tàu mà còn phân bổ đến các đại lý, cung cấp hình thức vé
+                điện
+                tử đa dạng để mọi hành khách đều có thể mua vé dễ dàng hơn ở bất lý nơi đâu mà không cần nhọc công di
+                chuyển.
+            </p>
+            <p>
+                Lý Hải hân hạnh là nhà phân phối vé tàu không chỉ khu vực Miền Nam mà còn tất cả các vùng miền. Ngoài
+                cung
+                cấp tận nơi quý khách có thể nhân vé từ Lý Hải bằng cách chuyển khoản qua tất cả các ngân hàng và sẽ
+                nhận
+                được vé điện tử qua mail xác nhận thông tin.
+            </p>
+            <p>
+                Giá vé tàu thường cố định chứ không thay đổi liên tục như máy bay, chỉ tăng giá vào dịp lễ tết. Không
+                cạnh
+                trạnh với bất cứ loại phương tiện nào , tàu lửa luôn có những ưu điểm riêng mà không loại hình nào thay
+                thế
+                được.
+            </p>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-main">
+            <p>Tổng công ty Đường sắt Việt Nam. Số 118 đường Lê Duẩn, Phường Cửa Nam, Quận Hoàn Kiếm, Thành phố Hà Nội,
+            Việt Nam.
+            </p>
+            <p>
+            Điện thoại: (84-24) 39425972. Fax: (84-24) 39422866. Email: dsvn@vr.com.vn.
+            </p>
+            <p>
+            Giấy chứng nhận ĐKKD số 113642 theo QĐ thành lập số 973/QĐ-TTg ngày 25/06/2010 của Thủ tướng Chính phủ.
+            </p>
+            <p>
+            Mã số doanh nghiệp: 0100105052, đăng ký lần đầu ngày 26/07/2010, đăng ký thay đổi lần 4 ngày 27/06/2014 tại
+            Sở KHĐT Thành phố Hà Nội.
+            </p>
+        </div>
+    </div>
+    <script ></script>
+</body>
+
+</html>
